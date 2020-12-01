@@ -1,0 +1,4 @@
+#!/bin/bash
+
+source activate
+pm2 start daemon.config.yml
