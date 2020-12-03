@@ -8,17 +8,27 @@
 🍌 amount
 🍍
 """
-# import os
-# import sys
-# import json
+
+import os
+import sys
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(BASE_DIR)
+
+import json
 import pendulum
 # import numpy as np
 # import pandas as pd
-# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-# sys.path.append(BASE_DIR)
 
+## wechat profile
+WECHAT_LIST = os.path.join(BASE_DIR,"etc","wechat.json")
+wechat_list = None
+with open(WECHAT_LIST, 'r', encoding='utf-8') as f:
+    wechat_list = json.load(f)
 
+user_list = wechat_list["user_list"]
+chatroom_list = wechat_list["chatroom_list"]
 
+## flask
 from flask import Flask, request, jsonify
 from markupsafe import escape
 
@@ -26,20 +36,6 @@ import itchat
 
 app = Flask(__name__)
 
-user_list = [
-        u'黄',
-        u'Nick Gao',
-        # u'Joy那么高兴',
-        u'e二姨',
-        u'ivan',
-        # u'confidentiality',
-        # u'徐永帅',
-        # u'胖虎哒欣喜',
-        # u'Daniel',
-        ]
-chatroom_list = [
-        # u'arkham-0x00',
-        ]
 def login_wechat_auto():
     # itchat.auto_login(enableCmdQR=2)
     # itchat.auto_login(hotReload=True)

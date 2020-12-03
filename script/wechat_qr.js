@@ -14,4 +14,4 @@ http.createServer(function (req,res) {
         }, 5000);
 
 }).listen(6600);
-console.log("Start server at 3000");
+console.log("Start server at 6600");

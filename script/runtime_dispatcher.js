@@ -3,11 +3,11 @@ const child_process = require("child_process");
 
 var flag_watch = true;
 var file_watch = "cache/runtime/stamp.pickle";
-var algo_list = [
-    // "Algo_0xA001.py",
-    "Algo_0xA902.py",
-    "Algo_0xA801.py",
-]
+
+var raw = fs.readFileSync('etc/profile.json');
+var profile = JSON.parse(raw);
+var algo_list = profile["algo"];
+
 
 fs.watch(file_watch, (eventType, filename) => {
   if (filename && flag_watch == true) {
