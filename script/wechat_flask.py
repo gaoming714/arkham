@@ -76,16 +76,6 @@ def login_wechat():
                 ]
     payload = payload.join(str_list)
     itchat.send(payload, toUserName='filehelper')
-    for user in user_list:
-        name = itchat.search_friends(name=user)
-        if name == []:
-            continue
-        itchat.send(payload, toUserName=name[0]["UserName"])
-    for user in chatroom_list:
-        name = itchat.search_chatrooms(name=user)
-        if name == []:
-            continue
-        itchat.send(payload, toUserName=name[0]["UserName"])
 
 @app.route('/msg/<msg>',methods=['GET','POST'])
 def send_message(msg):
