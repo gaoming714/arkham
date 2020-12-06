@@ -15,16 +15,14 @@ from datetime import datetime, timedelta
 import time
 import pytz
 import pandas as pd
-import util.personal as personal
+import jqdata.jqauth as jqauth
 from util.util import haunter
 
 LOG = haunter("nightly_finance")
 
 BASELINE = "000001.XSHG" # SZZS - 000001
 CACHE_NIGHTLY = os.path.join(BASE_DIR,"cache","nightly")
-# stamp_file = os.path.join(CACHE_PATH,"stamp.pickle")
-# ticker_list = ["000905.XSHG","000333.XSHE","002032.XSHE","601990.XSHG","002415.XSHE"]
-# ticker_list.append(BASELINE)
+
 
 def pull_finance():
     """
@@ -64,6 +62,6 @@ def pull_finance():
         pickle.dump(df, f)
 
 if __name__ == '__main__':
-    personal.login()
+    jqauth.login()
     pull_finance()
 

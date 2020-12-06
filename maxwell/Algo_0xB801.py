@@ -15,7 +15,6 @@ from datetime import datetime, timedelta
 import time
 import pytz
 import pandas as pd
-import util.personal as personal
 from util.util import pretty_name
 from util.util import haunter
 from icecream import ic
@@ -120,8 +119,6 @@ special_dict = {
     "603868.XSHG" : [None, 0], # 飞科电器
     "600519.XSHG" : [None, 20], # 贵州茅台
     "600048.XSHG" : [None, 0], # 保利地产
-
-
 
 
 }

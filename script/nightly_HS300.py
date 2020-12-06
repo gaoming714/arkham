@@ -15,7 +15,6 @@ from datetime import datetime
 import time
 import pytz
 import pysnooper
-import util.personal as personal
 from util.util import haunter
 
 LOG = haunter("nightly_HD300")

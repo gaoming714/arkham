@@ -1,7 +1,6 @@
 """
 download data from jqdatasdk
 need finance.pickle
-not unlimited for personal account.
 
 """
 import os
@@ -15,7 +14,6 @@ from datetime import datetime, timedelta
 import time
 import pytz
 import pandas as pd
-import util.personal as personal
 from util.util import haunter
 
 LOG = haunter("nightly_assess")

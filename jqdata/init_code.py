@@ -14,7 +14,7 @@ import json
 from datetime import datetime, timedelta
 import pytz
 import time
-import util.personal as personal
+import jqdata.jqauth as jqauth
 from util.util import haunter
 
 LOG = haunter()
@@ -47,5 +47,5 @@ def launch():
 
 
 if __name__ == '__main__':
-    personal.login()
+    jqauth.login()
     launch()
