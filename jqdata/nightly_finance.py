@@ -15,6 +15,7 @@ from datetime import datetime, timedelta
 import time
 import pytz
 import pandas as pd
+import pendulum
 import jqdata.jqauth as jqauth
 from util.util import haunter
 
@@ -61,7 +62,29 @@ def pull_finance():
     with open(os.path.join(CACHE_NIGHTLY, "finance.pickle"), 'wb') as f:
         pickle.dump(df, f)
 
+def hold_period():
+    """
+        update on 15:20
+    """
+
+    now = pendulum.now("Asia/Shanghai")
+    dawn = pendulum.today("Asia/Shanghai")
+    mk_epsilon = dawn.add(hours=15,minutes=20)
+    mk_zeta = pendulum.tomorrow("Asia/Shanghai")
+    flag = False
+    # refresh remain per half-hour
+    if now < mk_epsilon:
+        LOG.info(["remain (s) ",(mk_epsilon - now).total_seconds()])
+        time.sleep((mk_epsilon - now).total_seconds())
+    else:
+        LOG.info(["remain to tomorrow (s) ",(mk_zera - now).total_seconds()])
+        time.sleep((mk_zeta - now).total_seconds())
 if __name__ == '__main__':
     jqauth.login()
     pull_finance()
+    while True:
+        hold_period()
+        pull_finance()
+        hold_period()
+
 
