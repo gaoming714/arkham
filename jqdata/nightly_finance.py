@@ -69,22 +69,21 @@ def hold_period():
 
     now = pendulum.now("Asia/Shanghai")
     dawn = pendulum.today("Asia/Shanghai")
-    mk_epsilon = dawn.add(hours=15,minutes=20)
+    mk_epsilon = dawn.add(hours=6,minutes=20)
     mk_zeta = pendulum.tomorrow("Asia/Shanghai")
     flag = False
     # refresh remain per half-hour
     if now < mk_epsilon:
         LOG.info(["remain (s) ",(mk_epsilon - now).total_seconds()])
         time.sleep((mk_epsilon - now).total_seconds())
+        pull_finance()
     else:
-        LOG.info(["remain to tomorrow (s) ",(mk_zera - now).total_seconds()])
+        LOG.info(["remain to tomorrow (s) ",(mk_zeta - now).total_seconds()])
         time.sleep((mk_zeta - now).total_seconds())
 if __name__ == '__main__':
     jqauth.login()
     pull_finance()
     while True:
-        hold_period()
-        pull_finance()
         hold_period()
 
 
