@@ -3,6 +3,8 @@ download data from jqdatasdk
 the launch should be in the morning
 only for personal account.
 
+update on Saturday 7:00
+
 """
 import os
 import sys
@@ -69,11 +71,11 @@ def hold_period():
 
     now = pendulum.now("Asia/Shanghai")
     dawn = pendulum.today("Asia/Shanghai")
-    mk_epsilon = dawn.add(hours=6,minutes=20)
+    mk_epsilon = dawn.add(hours=7,minutes=0)
     mk_zeta = pendulum.tomorrow("Asia/Shanghai")
     flag = False
     # refresh remain per half-hour
-    if now < mk_epsilon:
+    if now < mk_epsilon and now.day_of_week == 6:
         LOG.info(["remain (s) ",(mk_epsilon - now).total_seconds()])
         time.sleep((mk_epsilon - now).total_seconds())
         pull_finance()
