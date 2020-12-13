@@ -1,0 +1,52 @@
+module.exports = {
+  apps: [
+    {
+      name: "WatchDog",
+      script: "../script/watchdog.js",
+      args: "",
+      interpreter: "node",
+      out_file: "../log/watchdog.log",
+      error_file: "../log/watchdog.log",
+    },
+    {
+      name: "RuntimeDownload",
+      script: "../script/runtime_download.py",
+      args: "",
+      interpreter: "python",
+      out_file: "../log/runtime_download.log",
+      error_file: "../log/runtime_download.log",
+    },
+    {
+      name: "WechatFlask",
+      script: "../script/wechat_flask.py",
+      args: "",
+      interpreter: "python",
+      out_file: "../log/wechatFlask.log",
+      error_file: "../log/wechatFlask.log",
+    },
+    {
+      name: "Redis",
+      script: "daemon.redis.sh",
+      args: "",
+      interpreter: "bash",
+      out_file: "../log/Redis.log",
+      error_file: "../log/Redis.log",
+    },
+    {
+      name: "Trade",
+      script: "daemon.trade.sh",
+      args: "",
+      interpreter: "bash",
+      out_file: "../log/trade.log",
+      error_file: "../log/trade.log",
+    },
+    {
+      name: "Flower",
+      script: "daemon.flower.sh",
+      args: "",
+      interpreter: "bash",
+      out_file: "../log/flower.log",
+      error_file: "../log/flower.log",
+    },
+  ],
+};

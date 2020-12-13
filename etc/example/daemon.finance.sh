@@ -1,0 +1,1 @@
+python jqdata/nightly_finance.py

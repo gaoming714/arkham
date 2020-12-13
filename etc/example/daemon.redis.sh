@@ -1,0 +1,1 @@
+/d/Portable/Redis/redis-server.exe
