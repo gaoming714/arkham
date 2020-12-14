@@ -8,9 +8,11 @@
     "test": "test"
   },
   "dependencies": {
+    "chalk": "^4.1.0",
     "gulp": "^4.0.2",
     "request": "^2.88.2",
-    "shelljs": "^0.8.4"
+    "shelljs": "^0.8.4",
+    "signale": "^1.4.0"
   },
   "devDependencies": {},
   "scripts": {
