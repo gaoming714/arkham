@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Socket.IO chat</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" rel="stylesheet">
     <style>
       * {
         margin: 0;
@@ -249,7 +250,7 @@
 
       .browser .tweets {
         margin: 0;
-        height: 250px;
+        height: 500px;
         overflow-y: auto;
         padding-left: 0;
       }
@@ -577,19 +578,21 @@
     </style>
   </head>
   <body>
+    <div class="container">
     <div class="window browser fading">
       <div class="header">
         <span class="bullet bullet-red"></span
         ><span class="bullet bullet-yellow"></span
         ><span class="bullet bullet-green"></span
         ><span class="title"
-          ><span class="scheme">微信公众号 </span>Funclang</span>
+          ><span class="scheme">微信公众号 </span>Funclang <span class="scheme"> by 野生的妙蛙种子 </span></span>
       </div>
       <div class="body">
         <!-- <p style="margin-bottom: 10px;">Have a nick day ~</p> -->
         <ul id="tweets" class="tweets"></ul>
       </div>
     </div>
+  </div>
     <!-- <ul id="messages"></ul>
     <form action="">
       <input id="m" autocomplete="off" /><button>Send</button>
