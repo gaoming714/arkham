@@ -76,7 +76,8 @@ def kick(ticker, detail=None):
                     "🍍 ", format(detail["expect_price"], '.3f'), " ~ ",
                     format(detail["dump_price"], '.3f')]
     payload = payload.join(str_list)
-    r = requests.get('http://127.0.0.1:9000/msg/' + payload)
+    r = requests.get('http://127.0.0.1:6601/msg/' + payload)
+    r = requests.get('http://127.0.0.1:6602/msg/' + payload)
     time.sleep(300)
     return 0
 
@@ -110,7 +111,8 @@ def story(ticker, detail=None):
                     "🔵 ", str(detail["open_time"]), "\n",
                     "🍑🍑🍑🍑🍑🍑🍑🍑"]
     payload = payload.join(str_list)
-    r = requests.get('http://127.0.0.1:9000/msg/' + payload)
+    r = requests.get('http://127.0.0.1:6601/msg/' + payload)
+    r = requests.get('http://127.0.0.1:6602/msg/' + payload)
     time.sleep(6 * 60 * 60)
     return 0
 

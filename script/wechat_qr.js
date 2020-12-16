@@ -6,7 +6,7 @@ var shell = require('shelljs');
 shell.config.silent = true;
 
 http.createServer(function (req,res) {
-    request('http://127.0.0.1:9000/login', function (error, response, body) {
+    request('http://127.0.0.1:6601/login', function (error, response, body) {
         if (!error && response.statusCode == 200) {
                 console.log(body) // 请求成功的处理逻辑
                 }

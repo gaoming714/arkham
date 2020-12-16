@@ -97,4 +97,4 @@ def send_message(msg):
 
 if __name__ == '__main__':
     # login_wechat()
-    app.run(port=9000)
+    app.run(port=6601)
