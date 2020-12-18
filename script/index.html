@@ -595,9 +595,18 @@
   <div class="container">
     <div class="window browser fading">
       <div class="header">
-        <span class="bullet bullet-red"></span><span class="bullet bullet-yellow"></span><span
-          class="bullet bullet-green"></span><span class="title"><span class="scheme">微信公众号 </span>Funclang
-          <span class="scheme"> by 野生的妙蛙种子 </span></span>
+        <span class="bullet bullet-red"></span>
+        <span class="bullet bullet-yellow"></span>
+        <span class="bullet bullet-green"></span>
+        <span class="title">
+          <span class="scheme">微信公众号 </span>
+          Funclang
+          <span class="scheme"> by 野生的妙蛙种子 </span>
+        </span>
+        <span>
+          <button id="help" type="button" class="btn btn-secondary">Help</button>
+        </span>
+
       </div>
       <div class="body">
         <!-- <p style="margin-bottom: 10px;">Have a nick day ~</p> -->
@@ -605,8 +614,8 @@
       </div>
     </div>
   </div>
-  <a href="https://github.com/gaoming714/arkham" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80"
-      viewBox="0 0 250 250" style="
+  <a href="https://github.com/gaoming714/arkham" class="github-corner" aria-label="View source on GitHub"><svg
+      width="80" height="80" viewBox="0 0 250 250" style="
           fill: #151513;
           color: #fff;
           position: absolute;
@@ -659,8 +668,10 @@
     <form action="">
       <input id="m" autocomplete="off" /><button>Send</button>
     </form> -->
-  <script src="/socket.io/socket.io.js"></script>
   <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/popper.js/2.6.0/umd/popper.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
   <script>
     var init_msg =
       "🍒 => 买  Buy " +
@@ -674,6 +685,14 @@
       "🔷 => 平  close" +
       " | " +
       "🍍 => 阈  area";
+
+    $("#help").click(function () {
+      $("#tweets").prepend(
+        $("<li class='new'><span class='tweet'><a class='time'>").text(
+          init_msg
+        )
+      );
+    });
     $(function () {
       var socket = io();
       $("form").submit(function (e) {
@@ -682,11 +701,7 @@
         $("#m").val("");
         return false;
       });
-      $("#tweets").prepend(
-        $("<li class='new'><span class='tweet'><a class='time'>").text(
-          init_msg
-        )
-      );
+
       socket.on("chat message", function (msg) {
         // $("#messages").append($("<li>").text(msg));
         $("#tweets").prepend(
