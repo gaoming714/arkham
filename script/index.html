@@ -1,592 +1,603 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Jokerpy</title>
-    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      body {
-        font: 13px Helvetica, Arial;
-      }
-      form {
-        background: #000;
-        padding: 3px;
-        position: fixed;
+
+<head>
+  <title>Jokerpy</title>
+  <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font: 13px Helvetica, Arial;
+    }
+
+    form {
+      background: #000;
+      padding: 3px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+    form input {
+      border: 0;
+      padding: 10px;
+      width: 90%;
+      margin-right: 0.5%;
+    }
+
+    form button {
+      width: 9%;
+      background: rgb(130, 224, 255);
+      border: none;
+      padding: 10px;
+    }
+
+    #messages {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    #messages li {
+      padding: 5px 10px;
+    }
+
+    #messages li:nth-child(odd) {
+      background: #eee;
+    }
+
+    .entry-title {
+      text-align: center;
+      font-size: 40px;
+      font-weight: lighter;
+      line-height: 1.2;
+      margin-top: 100px;
+      margin-bottom: 0;
+    }
+
+    .home #entries {
+      font-size: 14px;
+    }
+
+    .home .entry-subtitle {
+      text-align: center;
+      font-size: 12px;
+      font-weight: lighter;
+      background: #fff;
+      color: rgb(119, 119, 119);
+    }
+
+    .home #examples {
+      overflow: auto;
+      margin-top: 80px;
+    }
+
+    .home .example-entry {
+      height: 170px;
+    }
+
+    .home .information-entry {
+      height: 200px;
+    }
+
+    .home #information {
+      overflow: auto;
+      margin-top: 30px;
+    }
+
+    .home .repel {
+      overflow: auto;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    .home #examples .left {
+      margin-left: 100px;
+    }
+
+    .home .left {
+      width: 40%;
+      float: left;
+    }
+
+    .home .right {
+      width: 40%;
+      float: right;
+    }
+
+    .home .example-column {
+      width: 30%;
+    }
+
+    .home #screen-fill {
+      font-family: "untitled-font-2";
+      text-align: center;
+      font-size: 40px;
+      height: 1000px;
+      vertical-align: top;
+      padding-top: 60px;
+    }
+
+    .home #screen-fill .arrow {
+      display: none;
+    }
+
+    .home #screen-fill .arrow>a {
+      text-decoration: none;
+    }
+
+    @media screen and (min-height: 600px) {
+      .home #screen-fill .arrow {
+        display: block;
+        position: absolute;
         bottom: 0;
-        width: 100%;
+        left: 50%;
+        margin-left: -20px;
       }
-      form input {
-        border: 0;
-        padding: 10px;
-        width: 90%;
-        margin-right: 0.5%;
-      }
-      form button {
-        width: 9%;
-        background: rgb(130, 224, 255);
-        border: none;
-        padding: 10px;
-      }
-      #messages {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-      }
-      #messages li {
-        padding: 5px 10px;
-      }
-      #messages li:nth-child(odd) {
-        background: #eee;
+    }
+
+    .window {
+      border: 1px solid rgb(195, 195, 195);
+      width: 95%;
+      border-radius: 4px;
+      -webkit-box-shadow: 0px 2px 3px 0px rgba(50, 50, 50, 0.11);
+      -moz-box-shadow: 0px 2px 3px 0px rgba(50, 50, 50, 0.11);
+      box-shadow: 0px 2px 3px 0px rgba(50, 50, 50, 0.11);
+      text-align: left;
+      vertical-align: top;
+      margin: 20px;
+      animation: zoom 500ms;
+      -webkit-animation: zoom 500ms;
+    }
+
+    .window {
+      height: 800px;
+      display: inline-block;
+    }
+
+    .window .header {
+      padding: 0 9px;
+      line-height: 30px;
+      vertical-align: top;
+      padding: 2px 9px 0;
+    }
+
+    .window .header .title {
+      font: 23px "Myriad Pro", "Arial";
+    }
+
+    .editor .title {
+      text-align: center;
+      display: inline-block;
+      width: 500px;
+      color: #766f79;
+      vertical-align: middle;
+    }
+
+    .editor .body {
+      padding: 0 18px 10px;
+    }
+
+    .editor .code {
+      font: 13px Monaco, Courier New;
+      color: #ccc;
+    }
+
+    .editor .code .code {
+      color: #777;
+    }
+
+    .editor .code li {
+      padding: 3px 0;
+      margin-top: 0;
+    }
+
+    .editor .code .fn {
+      color: #4a90e2;
+    }
+
+    .editor .code .v {
+      color: #7ed321;
+    }
+
+    .editor .code .io {
+      color: #000;
+    }
+
+    .window .bullet {
+      height: 11px;
+      width: 11px;
+      display: inline-block;
+      background: #ccc;
+      border-radius: 100%;
+      vertical-align: middle;
+      margin-right: 5px;
+    }
+
+    .window .bullet-red {
+      background: #df7065;
+    }
+
+    .window .bullet-yellow {
+      background: #e6bb46;
+    }
+
+    .window .bullet-green {
+      background: #5bcc8b;
+    }
+
+    .browser .header {
+      background: #e8e8e8;
+      border-radius: 4px 4px 0 0;
+      padding-bottom: 3px;
+    }
+
+    .browser .header .title {
+      background: #fff;
+      display: inline-block;
+      width: 80%;
+      border-radius: 4px;
+      padding: 6px 14px 4px;
+      margin-left: 10px;
+      vertical-align: middle;
+    }
+
+    .browser .header .title .scheme {
+      color: #7ed321;
+    }
+
+    .browser .body {
+      height: 720px;
+      padding: 16px;
+      font: 20px "Lucida Grande", "Open Sans";
+    }
+
+    .browser .tweets {
+      margin: 0;
+      height: 720px;
+      overflow-y: auto;
+      padding-left: 0;
+    }
+
+    .browser .tweets li {
+      height: 27px;
+      line-height: 27px;
+      vertical-align: middle;
+      color: #4b434d;
+      list-style-type: none;
+      margin-bottom: 14px;
+    }
+
+    .browser .tweets img {
+      width: 27px;
+      height: 27px;
+      border-radius: 100%;
+      float: left;
+      margin-right: 10px;
+    }
+
+    .browser .tweets .tweet {
+      max-width: 80%;
+      overflow: hidden;
+      display: inline-block;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .browser .tweets .time {
+      color: #9b9b9b;
+      float: right;
+    }
+
+    .browser .tweets .new {
+      animation: drop 500ms;
+      -webkit-animation: drop 500ms;
+    }
+
+    @-webkit-keyframes zoom {
+      0% {
+        opacity: 0;
+        -webkit-transform: scale(1.15);
       }
 
-      .entry-title {
-        text-align: center;
-        font-size: 40px;
-        font-weight: lighter;
-        line-height: 1.2;
-        margin-top: 100px;
-        margin-bottom: 0;
+      100% {
+        opacity: 1;
+        -webkit-transform: scale(1);
+      }
+    }
+
+    @-webkit-keyframes drop {
+      0% {
+        opacity: 0;
+        -webkit-transform: translateY(-20px);
       }
 
-      .home #entries {
-        font-size: 14px;
+      100% {
+        opacity: 1;
+        -webkit-transform: translateY(0px);
+      }
+    }
+
+    @keyframes zoom {
+      0% {
+        opacity: 0;
+        transform: scale(1.15);
       }
 
-      .home .entry-subtitle {
-        text-align: center;
-        font-size: 12px;
-        font-weight: lighter;
-        background: #fff;
-        color: rgb(119, 119, 119);
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes drop {
+      0% {
+        opacity: 0;
+        transform: translateY(-20px);
       }
 
-      .home #examples {
-        overflow: auto;
-        margin-top: 80px;
+      100% {
+        opacity: 1;
+        transform: translateY(0px);
+      }
+    }
+
+    .twitter-follow-button {
+      position: relative;
+      top: 6px;
+      display: none;
+    }
+
+    iframe.twitter-follow-button {
+      display: inline-block;
+    }
+
+    @media screen and (max-width: 950px) {
+      .home .information-entry {
+        height: 200px !important;
       }
 
       .home .example-entry {
-        height: 170px;
+        height: 200px !important;
+        margin-bottom: 100px;
+      }
+    }
+
+    @media screen and (max-width: 1100px) {
+      .home .window {
+        width: 90% !important;
+        height: 10%;
+        margin-left: auto !important;
+        margin-right: auto !important;
       }
 
-      .home .information-entry {
-        height: 200px;
+      .home .window.editor {
+        margin-bottom: 20px;
       }
 
-      .home #information {
-        overflow: auto;
-        margin-top: 30px;
+      .home .window.browser {
+        margin-bottom: 60px !important;
       }
 
-      .home .repel {
-        overflow: auto;
-        margin-top: 10px;
-        margin-bottom: 10px;
+      .home .window .title {
+        width: 70%;
+        font-size: 22% !important;
       }
 
-      .home #examples .left {
-        margin-left: 100px;
+      .home .browser li img {
+        margin-right: 2px;
       }
 
-      .home .left {
-        width: 40%;
-        float: left;
+      .home .browser li .tweet {
+        padding-left: 29px;
+        width: 75%;
       }
 
-      .home .right {
-        width: 40%;
-        float: right;
-      }
-
-      .home .example-column {
-        width: 30%;
+      .home .browser .li a {
+        width: 15%;
       }
 
       .home #screen-fill {
-        font-family: "untitled-font-2";
-        text-align: center;
-        font-size: 40px;
-        height: 1000px;
-        vertical-align: top;
-        padding-top: 60px;
+        height: auto !important;
+        padding-top: 0;
       }
 
       .home #screen-fill .arrow {
         display: none;
       }
 
-      .home #screen-fill .arrow > a {
-        text-decoration: none;
+      header {
+        margin-bottom: 120px;
+      }
+    }
+
+    @media screen and (max-width: 600px) {
+      .home .window .title {
+        width: 60%;
+      }
+    }
+
+    @media screen and (max-width: 900px) {
+      div#page .entry-title {
+        font-size: 24px !important;
       }
 
-      @media screen and (min-height: 600px) {
-        .home #screen-fill .arrow {
-          display: block;
-          position: absolute;
-          bottom: 0;
-          left: 50%;
-          margin-left: -20px;
-        }
+      .home .entry-subtitle span.row {
+        display: block;
       }
 
-      .window {
-        border: 1px solid rgb(195, 195, 195);
-        width: 95%;
-        border-radius: 4px;
-        -webkit-box-shadow: 0px 2px 3px 0px rgba(50, 50, 50, 0.11);
-        -moz-box-shadow: 0px 2px 3px 0px rgba(50, 50, 50, 0.11);
-        box-shadow: 0px 2px 3px 0px rgba(50, 50, 50, 0.11);
-        text-align: left;
-        vertical-align: top;
-        margin: 20px;
-        animation: zoom 500ms;
-        -webkit-animation: zoom 500ms;
+      .home header.fading {
+        opacity: 1 !important;
       }
 
-      .window {
-        height: 800px;
-        display: inline-block;
+      .home .left {
+        float: none;
       }
 
-      .window .header {
-        padding: 0 9px;
-        line-height: 30px;
-        vertical-align: top;
-        padding: 2px 9px 0;
+      .home .right {
+        float: none;
       }
 
-      .window .header .title {
-        font: 23px "Myriad Pro", "Arial";
+      .home .information-column {
+        width: 100%;
+        margin-left: 0px !important;
+        margin-right: 0px !important;
       }
 
-      .editor .title {
+      .home .example-column {
+        width: 100%;
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+      }
+
+      .home #entries {
+        margin-left: 0%;
+        margin-top: 150px;
+      }
+
+      .home .example-entry {
+        height: 190px;
         text-align: center;
+      }
+
+      .home .information-entry {
+        height: 170px;
+        text-align: center;
+      }
+
+      .home .icon:before {
+        margin-left: -30px !important;
+        margin-top: -70px !important;
+        font-size: 50px !important;
+      }
+
+      .site-footer {
+        text-align: center;
+        font-size: 8px;
+        margin-bottom: 100px !important;
+      }
+
+      .site-footer .footer-left {
+        float: none !important;
+      }
+
+      .site-footer .footer-right {
+        float: none !important;
+      }
+
+      .footer-right #a8c-image {
+        float: none !important;
+        display: inline-block !important;
+        vertical-align: middle !important;
+      }
+
+      .site-info span {
+        display: block;
+      }
+
+      .main-navigation {
+        float: none !important;
         display: inline-block;
-        width: 500px;
-        color: #766f79;
-        vertical-align: middle;
+        text-align: center;
       }
 
-      .editor .body {
-        padding: 0 18px 10px;
+      .main-navigation #logo-container {
+        float: none !important;
+        display: block;
       }
 
-      .editor .code {
-        font: 13px Monaco, Courier New;
-        color: #ccc;
+      .main-navigation #logo {
+        float: none !important;
+
+        position: absolute;
+        top: 80px;
+        left: 0px;
+        right: 0px;
+
+        margin-left: auto;
+        margin-right: auto;
       }
 
-      .editor .code .code {
-        color: #777;
-      }
-
-      .editor .code li {
-        padding: 3px 0;
-        margin-top: 0;
-      }
-
-      .editor .code .fn {
-        color: #4a90e2;
-      }
-
-      .editor .code .v {
-        color: #7ed321;
-      }
-
-      .editor .code .io {
-        color: #000;
-      }
-
-      .window .bullet {
-        height: 11px;
-        width: 11px;
+      .main-navigation ul.menu {
+        width: 100%;
+        float: none !important;
+        position: absolute;
         display: inline-block;
-        background: #ccc;
-        border-radius: 100%;
-        vertical-align: middle;
+        text-align: center;
+        left: 0px;
+        right: 0px;
+        top: 10px;
+
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .main-navigation ul.menu li {
+        float: none !important;
+        display: inline-block;
+        margin-left: 5px;
         margin-right: 5px;
       }
-
-      .window .bullet-red {
-        background: #df7065;
-      }
-
-      .window .bullet-yellow {
-        background: #e6bb46;
-      }
-
-      .window .bullet-green {
-        background: #5bcc8b;
-      }
-
-      .browser .header {
-        background: #e8e8e8;
-        border-radius: 4px 4px 0 0;
-        padding-bottom: 3px;
-      }
-
-      .browser .header .title {
-        background: #fff;
-        display: inline-block;
-        width: 80%;
-        border-radius: 4px;
-        padding: 6px 14px 4px;
-        margin-left: 10px;
-        vertical-align: middle;
-      }
-
-      .browser .header .title .scheme {
-        color: #7ed321;
-      }
-
-      .browser .body {
-        height: 720px;
-        padding: 16px;
-        font: 20px "Lucida Grande", "Open Sans";
-      }
-
-      .browser .tweets {
-        margin: 0;
-        height: 720px;
-        overflow-y: auto;
-        padding-left: 0;
-      }
-
-      .browser .tweets li {
-        height: 27px;
-        line-height: 27px;
-        vertical-align: middle;
-        color: #4b434d;
-        list-style-type: none;
-        margin-bottom: 14px;
-      }
-
-      .browser .tweets img {
-        width: 27px;
-        height: 27px;
-        border-radius: 100%;
-        float: left;
-        margin-right: 10px;
-      }
-
-      .browser .tweets .tweet {
-        max-width: 80%;
-        overflow: hidden;
-        display: inline-block;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-
-      .browser .tweets .time {
-        color: #9b9b9b;
-        float: right;
-      }
-
-      .browser .tweets .new {
-        animation: drop 500ms;
-        -webkit-animation: drop 500ms;
-      }
-
-      @-webkit-keyframes zoom {
-        0% {
-          opacity: 0;
-          -webkit-transform: scale(1.15);
-        }
-        100% {
-          opacity: 1;
-          -webkit-transform: scale(1);
-        }
-      }
-
-      @-webkit-keyframes drop {
-        0% {
-          opacity: 0;
-          -webkit-transform: translateY(-20px);
-        }
-        100% {
-          opacity: 1;
-          -webkit-transform: translateY(0px);
-        }
-      }
-
-      @keyframes zoom {
-        0% {
-          opacity: 0;
-          transform: scale(1.15);
-        }
-        100% {
-          opacity: 1;
-          transform: scale(1);
-        }
-      }
-
-      @keyframes drop {
-        0% {
-          opacity: 0;
-          transform: translateY(-20px);
-        }
-        100% {
-          opacity: 1;
-          transform: translateY(0px);
-        }
-      }
-
-      .twitter-follow-button {
-        position: relative;
-        top: 6px;
-        display: none;
-      }
-
-      iframe.twitter-follow-button {
-        display: inline-block;
-      }
-
-      @media screen and (max-width: 950px) {
-        .home .information-entry {
-          height: 200px !important;
-        }
-
-        .home .example-entry {
-          height: 200px !important;
-          margin-bottom: 100px;
-        }
-      }
-
-      @media screen and (max-width: 1100px) {
-        .home .window {
-          width: 90% !important;
-          height: 10%;
-          margin-left: auto !important;
-          margin-right: auto !important;
-        }
-
-        .home .window.editor {
-          margin-bottom: 20px;
-        }
-
-        .home .window.browser {
-          margin-bottom: 60px !important;
-        }
-
-        .home .window .title {
-          width: 70%;
-          font-size: 22% !important;
-        }
-
-        .home .browser li img {
-          margin-right: 2px;
-        }
-
-        .home .browser li .tweet {
-          padding-left: 29px;
-          width: 75%;
-        }
-
-        .home .browser .li a {
-          width: 15%;
-        }
-
-        .home #screen-fill {
-          height: auto !important;
-          padding-top: 0;
-        }
-
-        .home #screen-fill .arrow {
-          display: none;
-        }
-
-        header {
-          margin-bottom: 120px;
-        }
-      }
-
-      @media screen and (max-width: 600px) {
-        .home .window .title {
-          width: 60%;
-        }
-      }
-
-      @media screen and (max-width: 900px) {
-        div#page .entry-title {
-          font-size: 24px !important;
-        }
-
-        .home .entry-subtitle span.row {
-          display: block;
-        }
-
-        .home header.fading {
-          opacity: 1 !important;
-        }
-
-        .home .left {
-          float: none;
-        }
-
-        .home .right {
-          float: none;
-        }
-
-        .home .information-column {
-          width: 100%;
-          margin-left: 0px !important;
-          margin-right: 0px !important;
-        }
-
-        .home .example-column {
-          width: 100%;
-          margin-left: 0px !important;
-          margin-right: 0px !important;
-        }
-
-        .home #entries {
-          margin-left: 0%;
-          margin-top: 150px;
-        }
-
-        .home .example-entry {
-          height: 190px;
-          text-align: center;
-        }
-
-        .home .information-entry {
-          height: 170px;
-          text-align: center;
-        }
-
-        .home .icon:before {
-          margin-left: -30px !important;
-          margin-top: -70px !important;
-          font-size: 50px !important;
-        }
-
-        .site-footer {
-          text-align: center;
-          font-size: 8px;
-          margin-bottom: 100px !important;
-        }
-
-        .site-footer .footer-left {
-          float: none !important;
-        }
-
-        .site-footer .footer-right {
-          float: none !important;
-        }
-
-        .footer-right #a8c-image {
-          float: none !important;
-          display: inline-block !important;
-          vertical-align: middle !important;
-        }
-
-        .site-info span {
-          display: block;
-        }
-
-        .main-navigation {
-          float: none !important;
-          display: inline-block;
-          text-align: center;
-        }
-
-        .main-navigation #logo-container {
-          float: none !important;
-          display: block;
-        }
-
-        .main-navigation #logo {
-          float: none !important;
-
-          position: absolute;
-          top: 80px;
-          left: 0px;
-          right: 0px;
-
-          margin-left: auto;
-          margin-right: auto;
-        }
-
-        .main-navigation ul.menu {
-          width: 100%;
-          float: none !important;
-          position: absolute;
-          display: inline-block;
-          text-align: center;
-          left: 0px;
-          right: 0px;
-          top: 10px;
-
-          margin-left: auto;
-          margin-right: auto;
-        }
-
-        .main-navigation ul.menu li {
-          float: none !important;
-          display: inline-block;
-          margin-left: 5px;
-          margin-right: 5px;
-        }
-      }
-
-      /* Home icons */
-      .home .icon:before {
-        font-family: "untitled-font-2";
-        position: absolute;
-        margin-left: -100px;
-        font-size: 70px;
-      }
-
-      .home .analytics:before {
-        content: "y";
-      }
-
-      .home .binary:before {
-        content: "G";
-      }
-
-      .home .chat:before {
-        content: "M";
-      }
-
-      .home .collab:before {
-        content: "J";
-      }
-
-      .larger {
-        font-size: 16px;
-      }
-
-      .centered {
-        text-align: center;
-      }
-
-      .home h3 {
-        font-size: 14px;
-        font-weight: normal;
-        color: #766f79;
-      }
-
-      .home h2 {
-        font-size: 18px;
-        font-weight: normal;
-        color: black;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
+    }
+
+    /* Home icons */
+    .home .icon:before {
+      font-family: "untitled-font-2";
+      position: absolute;
+      margin-left: -100px;
+      font-size: 70px;
+    }
+
+    .home .analytics:before {
+      content: "y";
+    }
+
+    .home .binary:before {
+      content: "G";
+    }
+
+    .home .chat:before {
+      content: "M";
+    }
+
+    .home .collab:before {
+      content: "J";
+    }
+
+    .larger {
+      font-size: 16px;
+    }
+
+    .centered {
+      text-align: center;
+    }
+
+    .home h3 {
+      font-size: 14px;
+      font-weight: normal;
+      color: #766f79;
+    }
+
+    .home h2 {
+      font-size: 18px;
+      font-weight: normal;
+      color: black;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
     <div class="window browser fading">
       <div class="header">
-        <span class="bullet bullet-red"></span
-        ><span class="bullet bullet-yellow"></span
-        ><span class="bullet bullet-green"></span
-        ><span class="title"
-          ><span class="scheme">微信公众号 </span>Funclang <span class="scheme"> by 野生的妙蛙种子 </span></span>
+        <span class="bullet bullet-red"></span><span class="bullet bullet-yellow"></span><span
+          class="bullet bullet-green"></span><span class="title"><span class="scheme">微信公众号 </span>Funclang
+          <span class="scheme"> by 野生的妙蛙种子 </span></span>
       </div>
       <div class="body">
         <!-- <p style="margin-bottom: 10px;">Have a nick day ~</p> -->
@@ -594,37 +605,96 @@
       </div>
     </div>
   </div>
-    <!-- <ul id="messages"></ul>
+  <a href="https://github.com/gaoming714/arkham" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80"
+      viewBox="0 0 250 250" style="
+          fill: #151513;
+          color: #fff;
+          position: absolute;
+          top: 0;
+          border: 0;
+          right: 0;
+        " aria-hidden="true">
+      <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+      <path
+        d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+        fill="currentColor" style="transform-origin: 130px 106px" class="octo-arm"></path>
+      <path
+        d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+        fill="currentColor" class="octo-body"></path>
+    </svg></a>
+  <style>
+    .github-corner:hover .octo-arm {
+      animation: octocat-wave 560ms ease-in-out;
+    }
+
+    @keyframes octocat-wave {
+
+      0%,
+      100% {
+        transform: rotate(0);
+      }
+
+      20%,
+      60% {
+        transform: rotate(-25deg);
+      }
+
+      40%,
+      80% {
+        transform: rotate(10deg);
+      }
+    }
+
+    @media (max-width: 500px) {
+      .github-corner:hover .octo-arm {
+        animation: none;
+      }
+
+      .github-corner .octo-arm {
+        animation: octocat-wave 560ms ease-in-out;
+      }
+    }
+  </style>
+  <!-- <ul id="messages"></ul>
     <form action="">
       <input id="m" autocomplete="off" /><button>Send</button>
     </form> -->
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-      var init_msg = "🍒 => 买  Buy "+ " | "+
-                "🍏 => 卖  Sell"+" | "+
-                "🍌 => 量  amount"+" | "+
-                "🔵 => 开  open"+ " | "+
-                "🔷 => 平  close"+ " | "+
-                "🍍 => 阈  area";
-      $(function () {
-        var socket = io();
-        $("form").submit(function (e) {
-          e.preventDefault(); // prevents page reloading
-          socket.emit("chat message", $("#m").val());
-          $("#m").val("");
-          return false;
-        });
-        $("#tweets").prepend(
-            $("<li class='new'><span class='tweet'><a class='time'>").text(init_msg)
-          );
-        socket.on("chat message", function (msg) {
-          // $("#messages").append($("<li>").text(msg));
-          $("#tweets").prepend(
-            $("<li class='new'><span class='tweet'><a class='time'>").text(msg)
-          );
-        });
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    var init_msg =
+      "🍒 => 买  Buy " +
+      " | " +
+      "🍏 => 卖  Sell" +
+      " | " +
+      "🍌 => 量  amount" +
+      " | " +
+      "🔵 => 开  open" +
+      " | " +
+      "🔷 => 平  close" +
+      " | " +
+      "🍍 => 阈  area";
+    $(function () {
+      var socket = io();
+      $("form").submit(function (e) {
+        e.preventDefault(); // prevents page reloading
+        socket.emit("chat message", $("#m").val());
+        $("#m").val("");
+        return false;
       });
-    </script>
-  </body>
+      $("#tweets").prepend(
+        $("<li class='new'><span class='tweet'><a class='time'>").text(
+          init_msg
+        )
+      );
+      socket.on("chat message", function (msg) {
+        // $("#messages").append($("<li>").text(msg));
+        $("#tweets").prepend(
+          $("<li class='new'><span class='tweet'><a class='time'>").text(msg)
+        );
+      });
+    });
+  </script>
+</body>
+
 </html>
