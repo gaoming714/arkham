@@ -7,7 +7,12 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
 });
 
-app.use(express.static(__dirname));
+app.use(express.static(__dirname + "/static"));
+app.use(function (req, res, next) {
+      res.status(404)
+      res.sendFile(__dirname + "/static/404.html");
+      //res.status(404).send("Sorry can't find that!")
+})
 
 app.get("/msg/:msg", (req, res) => {
   const msg = req.params.msg;
