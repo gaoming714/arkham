@@ -590,9 +590,19 @@
       color: black;
     }
   </style>
+  <style>
+    canvas  {
+  
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -2;
+}
+  </style>
 </head>
 
 <body>
+  <canvas id="snakes" width="1903" height="680"></canvas>
   <div class="container">
     <div class="window browser fading">
       <div class="header">
@@ -665,6 +675,10 @@
       }
     }
   </style>
+
+
+
+
 <div class="preloader bg-dark flex-column justify-content-center align-items-center">
   <svg id="loader-logo" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 64 78.4">
       <path fill="#fff" d="M10,0h1.2V11.2H0V10A10,10,0,0,1,10,0Z"/>
@@ -688,6 +702,7 @@
   <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdn.bootcdn.net/ajax/libs/popper.js/2.6.0/umd/popper.min.js"></script>
   <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js"></script>
+  <script src="./snakes.js" type="text/javascript"></script>
   <!-- <script src="/socket.io/socket.io.js"></script> -->
   <script src="https://cdn.bootcdn.net/ajax/libs/socket.io/3.0.0-rc4/socket.io.min.js"></script>
   <script src="https://cdn.bootcdn.net/ajax/libs/vivus/0.4.5/vivus.min.js"></script>
