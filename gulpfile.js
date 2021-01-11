@@ -20,7 +20,7 @@ function check(cb) {
 }
 
 function main(cb) {
-    shell.exec('bash etc/start.sh',{silent:true});
+    shell.exec('pm2 start etc/daemon.config.yml',{silent:true});
     cb();
 }
 
