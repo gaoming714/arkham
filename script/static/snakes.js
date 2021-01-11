@@ -201,9 +201,9 @@ $(function () {
 		baseLife: 1500,
 		addedLife: 500,
 
-		bgR: 240,
-		bgG: 244,
-		bgB: 252,
+		bgR: 255,
+		bgG: 255,
+		bgB: 255,
 
 		repaintAlpha: .3,
 
