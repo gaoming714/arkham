@@ -41,7 +41,7 @@ def launch():
     with Firefox(options=options) as driver:
         wait = WebDriverWait(driver, 10)
         driver.get("https://eniu.com/gu/sz399300")
-        ans = driver.find_element(By.XPATH, "/html/body/div[4]/div/div[4]/div/div[2]/div[1]/div[1]/h3")
+        ans = driver.find_element(By.XPATH, "/html/body/div[4]/div/div[1]/div/div[1]/div/div[2]/div/p[1]/a")
         if ans:
             pe = float(ans.text)
         else:
