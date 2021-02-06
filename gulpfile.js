@@ -5,12 +5,10 @@ const chalk = require('chalk');
 
 function check(cb) {
     var daemon_list = [
-        'etc/start.sh',
         'etc/daemon.config.yml',
         'etc/daemon.download.sh',
         'etc/daemon.trade.sh',
-        'etc/daemon.wechatflask.sh',
-        'etc/start.sh'
+        'etc/daemon.wechatflask.sh'
     ]
     var status = shell.find(daemon_list);
     if (status.code !== 0) {

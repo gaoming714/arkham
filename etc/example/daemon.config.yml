@@ -1,6 +1,8 @@
+# launch =>
+
 apps:
   - name        : "WatchDog"
-    script      : "script/.jtchdogs"
+    script      : "script/watchdog.js"
     args        : ""
     cwd         : ""
     interpreter : "node"
