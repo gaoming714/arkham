@@ -1,5 +1,6 @@
 """
-init code
+get HS300_PE from eniu.com
+Archived
 
 """
 
@@ -17,7 +18,7 @@ import pytz
 import pysnooper
 from util.util import haunter
 
-LOG = haunter("nightly_HD300")
+LOG = haunter("nightly_HS300")
 
 CACHE_PATH = os.path.join(BASE_DIR, "cache")
 
@@ -47,6 +48,16 @@ def launch():
         else:
             pe = 0
             LOG.critical("webdriver fail. check web -> eniu.com")
+
+        # start_time = time.time()
+        # while True:
+        #     try:
+        #         ans = driver.find_element(By.XPATH, "/html/body/div[4]/div/div[1]/div/div[1]/div/div[2]/div/p[1]/a")
+        #         assert type(ans.text) == type("")
+        #     except (AssertionError) as e:
+        #         if time.time() - start_time > MAX_WAIT:
+        #             raise e
+        #         time.sleep(0.5)
 
     # save to file
     LOG.info("ticker_map dumps to file, PE_HS300.pickle")
