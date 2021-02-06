@@ -59,8 +59,8 @@ def pretty_name(tickers):
         dbs = pickle.load(f)
     if not (set(ticker_list) < set(dbs.index)):
         return tickers
-    display_name_list = dbs["display_name"][ticker_list].to_list()
-    code_list = dbs["code"][ticker_list].to_list()
+    display_name_list = dbs["display_name"][ticker_list].tolist()
+    code_list = dbs["code"][ticker_list].tolist()
     pretty_zip = zip(code_list,display_name_list)
     pretty_list = list(map(lambda x: " - ".join(x),pretty_zip))
     if type(tickers) == type(""):
