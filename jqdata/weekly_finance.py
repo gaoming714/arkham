@@ -30,9 +30,15 @@ CACHE_NIGHTLY = os.path.join(BASE_DIR,"cache","nightly")
 def pull_finance():
     """
     """
+    clock = pendulum.now("Asia/Shanghai")
+    if clock.month < 5:
+        finance_year = clock.year - 2
+    else:
+        finance_year = clock.year - 1
+
     ### get ticker_list
     ticker_df = jq.get_all_securities(types=['stock'], date=None)
-    ticker_list = ticker_df.index.to_list()
+    ticker_list = ticker_df.index.tolist()
     ## download finance
     df_indicator = jq.get_fundamentals(jq.query(
             jq.indicator.roe,
@@ -42,12 +48,15 @@ def pull_finance():
             jq.indicator.statDate
             ).filter(
                 jq.valuation.code.in_(ticker_list)
-            ), statDate='2019')
+            ), statDate=finance_year)
     df_valuation = jq.get_fundamentals(jq.query(
             jq.valuation.code,
             jq.valuation.day,
             jq.valuation.pe_ratio,
-            jq.valuation.pe_ratio_lyr
+            jq.valuation.pe_ratio_lyr,
+            jq.valuation.market_cap,
+            jq.valuation.circulating_cap,
+            jq.valuation.circulating_market_cap
             ).filter(
                 jq.valuation.code.in_(ticker_list)
             ), date=None)
@@ -63,6 +72,29 @@ def pull_finance():
     LOG.info("Download Data to finance.pickle")
     with open(os.path.join(CACHE_NIGHTLY, "finance.pickle"), 'wb') as f:
         pickle.dump(df, f)
+def pull_ticker():
+    index_list = [  "000300.XSHG",
+                    "000688.XSHG",
+                    "399300.XSHE",
+    ]
+    weight_dict = {}
+    for index_item in index_list:
+        # ticker_list = jq.get_index_stocks(index_item)
+        # print(ticker_list)
+        weight_df = jq.get_index_weights(index_item)
+        # print(weight_df.index.tolist())
+        # print(weight_df)
+        #                    date  weight display_name
+        # code
+        # 000001.XSHE  2020-12-31   0.957         平安银行
+        # 000002.XSHE  2020-12-31   0.996          万科A
+        weight_dict[index_item] = weight_df
+    # save to data.pickle
+    LOG.info("Download Data to weights.pickle")
+    with open(os.path.join(CACHE_NIGHTLY, "weights.pickle"), 'wb') as f:
+        pickle.dump(weight_dict, f)
+
+
 
 def hold_period():
     """
@@ -85,7 +117,8 @@ def hold_period():
 if __name__ == '__main__':
     jqauth.login()
     pull_finance()
-    while True:
-        hold_period()
+    pull_ticker()
+    # while True:
+    #     hold_period()
 
 
