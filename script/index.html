@@ -3,6 +3,7 @@
 
 <head>
   <title>Jokerpy</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" rel="stylesheet" />
   <link href="./pixel.css" rel="stylesheet">
   <style>
@@ -591,18 +592,96 @@
     }
   </style>
   <style>
-    canvas  {
-  
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -2;
-}
+    canvas {
+
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -2;
+    }
   </style>
 </head>
 
 <body>
   <canvas id="snakes" width="1903" height="680"></canvas>
+  <header class="header-global">
+    <nav id="navbar-main" aria-label="Primary navigation"
+      class="navbar navbar-main navbar-expand-lg navbar-theme-primary headroom navbar-dark navbar-transparent headroom--not-bottom headroom--pinned headroom--top">
+      <div class="container position-relative"><a class="navbar-brand mr-lg-5" href="../../index.html"><img
+            class="navbar-brand-dark" src="../../assets/img/brand/light.svg" alt="Logo PokeScript"> <img
+            class="navbar-brand-light" src="../../assets/img/brand/dark.svg" alt="Logo Pixel Dark"></a>
+        <div class="navbar-collapse collapse" id="navbar_global">
+          <div class="navbar-collapse-header">
+            <div class="row">
+              <div class="col-6 collapse-brand"><a href="../../index.html#features"><img
+                    src="../../assets/img/brand/dark.svg" alt="Logo Pixel"></a></div>
+              <div class="col-6 collapse-close"><a href="#navbar_global" class="fas fa-times" data-toggle="collapse"
+                  data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false"
+                  aria-label="Toggle navigation"></a></div>
+            </div>
+          </div>
+          <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
+            <li class="nav-item dropdown"><a href="#" class="nav-link" data-toggle="dropdown"
+                aria-controls="pages_submenu" aria-expanded="false" aria-label="Toggle pages menu item"><span
+                  class="nav-link-inner-text">Pages</span> <span
+                  class="fas fa-angle-down nav-link-arrow ml-2"></span></a>
+              <ul class="dropdown-menu" id="pages_submenu">
+                <li><a class="dropdown-item" href="../../html/pages/about-company.html">About</a></li>
+                <li><a class="dropdown-item" href="../../html/pages/contact.html">Contact</a></li>
+                <li><a class="dropdown-item" href="../../html/pages/pricing.html">Pricing</a></li>
+                <li><a class="dropdown-item" href="../../html/pages/services.html">Services</a></li>
+                <li><a class="dropdown-item" href="../../html/pages/sign-in.html">Sign in</a></li>
+                <li><a class="dropdown-item" href="../../html/pages/sign-up.html">Sign up</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown"><a href="#" class="nav-link" data-toggle="dropdown"
+                aria-controls="support_submenu" aria-expanded="false" aria-label="Toggle support menu item"><span
+                  class="nav-link-inner-text">Support</span> <span
+                  class="fas fa-angle-down nav-link-arrow ml-2"></span></a>
+              <div class="dropdown-menu dropdown-menu-lg" id="support_submenu">
+                <div class="col-auto px-0" data-dropdown-content="">
+                  <div class="list-group list-group-flush"><a
+                      href="https://themesberg.com/docs/pixel-bootstrap/getting-started/overview/" target="_blank"
+                      class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4"><span
+                        class="icon icon-sm icon-secondary"><span class="fas fa-file-alt"></span></span>
+                      <div class="ml-4"><span class="text-dark d-block">Documentation<span
+                            class="badge badge-sm badge-secondary ml-2">v3.0</span></span> <span class="small">Examples
+                          and guides</span></div>
+                    </a><a href="https://github.com/themesberg/pixel-bootstrap-ui-kit/issues" target="_blank"
+                      class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4"><span
+                        class="icon icon-sm icon-primary"><span class="fas fa-microphone-alt"></span></span>
+                      <div class="ml-4"><span class="text-dark d-block">Support</span> <span class="small">Found an
+                          issue? Let us know!</span></div>
+                    </a></div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="d-flex align-items-center"><span class="d-none d-md-inline"><a
+              href="https://demo.themesberg.com/pixel-pro/" target="_blank"
+              class="btn btn-tertiary animate-up-2">Upgrade to Pro</a></span> <a
+            href="https://themesberg.com/docs/pixel-bootstrap/getting-started/overview/" target="_blank"
+            class="btn btn-outline-soft ml-md-3 animate-up-2"><span class="fas fa-book mr-2"></span> Docs v3.0</a>
+          <button class="navbar-toggler ml-2" type="button" data-toggle="collapse" data-target="#navbar_global"
+            aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation"><span
+              class="navbar-toggler-icon"></span></button></div>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <section class="section-header bg-secondary text-white" style="padding-top: 0rem;">
+      <div class="position-absolute bottom-0 left-0 w-100 d-none d-md-block mb-n2">
+        <svg class="fill-white" version="1.1" xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1920 43.4"
+          style="enable-background:new 0 0 1920 43.4;" xml:space="preserve">
+          <path
+            d="M0,23.3c0,0,405.1-43.5,697.6,0c316.5,1.5,108.9-2.6,480.4-14.1c0,0,139-12.2,458.7,14.3 c0,0,67.8,19.2,283.3-22.7v35.1H0V23.3z">
+          </path>
+        </svg>
+      </div>
+    </section>
+  </main>
   <div class="container">
     <div class="window browser fading">
       <div class="header">
@@ -617,7 +696,6 @@
         <span>
           <button id="help" type="button" class="btn float-right">Help</button>
         </span>
-
       </div>
       <div class="body">
         <!-- <p style="margin-bottom: 10px;">Have a nick day ~</p> -->
@@ -679,22 +757,24 @@
 
 
 
-<div class="preloader bg-dark flex-column justify-content-center align-items-center">
-  <svg id="loader-logo" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 64 78.4">
-      <path fill="#fff" d="M10,0h1.2V11.2H0V10A10,10,0,0,1,10,0Z"/>
-      <rect fill="none" stroke="#fff" stroke-width="11.2" x="40" y="17.6" width="0" height="25.6"/>
-      <rect fill="none" stroke="#fff" stroke-opacity="0.4" stroke-width="11.2" x="23" y="35.2" width="0" height="25.6"/>
-      <path fill="#fff" d="M52.8,35.2H64V53.8a7,7,0,0,1-7,7H52.8V35.2Z"/>
-      <rect fill="none" stroke="#fff" stroke-width="11.2" x="6" y="52.8" width="0" height="25.6"/>
-      <path fill="#fff" d="M52.8,0H57a7,7,0,0,1,7,7h0v4.2H52.8V0Z"/>
-      <rect fill="none" stroke="#fff" stroke-opacity="0.4" stroke-width="11.2" x="57.8" y="17.6" width="0" height="11.2"/>
-      <rect fill="none" stroke="#fff" stroke-width="11.2" x="6" y="35.2" width="0" height="11.2"/>
-      <rect fill="none" stroke="#fff" stroke-width="11.2" x="40.2" y="49.6" width="0" height="11.2"/>
-      <path fill="#fff" d="M17.6,67.2H28.8v1.2a10,10,0,0,1-10,10H17.6V67.2Z"/>
-      <rect fill="none" stroke="#fff" stroke-opacity="0.4" stroke-width="28.8" x="31.6" width="0" height="11.2"/>
-      <rect fill="none" stroke="#fff" x="14" stroke-width="28.8" y="17.6" width="0" height="11.2"/>
-  </svg>
-</div>  
+  <div class="preloader bg-dark flex-column justify-content-center align-items-center">
+    <svg id="loader-logo" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 64 78.4">
+      <path fill="#fff" d="M10,0h1.2V11.2H0V10A10,10,0,0,1,10,0Z" />
+      <rect fill="none" stroke="#fff" stroke-width="11.2" x="40" y="17.6" width="0" height="25.6" />
+      <rect fill="none" stroke="#fff" stroke-opacity="0.4" stroke-width="11.2" x="23" y="35.2" width="0"
+        height="25.6" />
+      <path fill="#fff" d="M52.8,35.2H64V53.8a7,7,0,0,1-7,7H52.8V35.2Z" />
+      <rect fill="none" stroke="#fff" stroke-width="11.2" x="6" y="52.8" width="0" height="25.6" />
+      <path fill="#fff" d="M52.8,0H57a7,7,0,0,1,7,7h0v4.2H52.8V0Z" />
+      <rect fill="none" stroke="#fff" stroke-opacity="0.4" stroke-width="11.2" x="57.8" y="17.6" width="0"
+        height="11.2" />
+      <rect fill="none" stroke="#fff" stroke-width="11.2" x="6" y="35.2" width="0" height="11.2" />
+      <rect fill="none" stroke="#fff" stroke-width="11.2" x="40.2" y="49.6" width="0" height="11.2" />
+      <path fill="#fff" d="M17.6,67.2H28.8v1.2a10,10,0,0,1-10,10H17.6V67.2Z" />
+      <rect fill="none" stroke="#fff" stroke-opacity="0.4" stroke-width="28.8" x="31.6" width="0" height="11.2" />
+      <rect fill="none" stroke="#fff" x="14" stroke-width="28.8" y="17.6" width="0" height="11.2" />
+    </svg>
+  </div>
   <!-- <ul id="messages"></ul>
     <form action="">
       <input id="m" autocomplete="off" /><button>Send</button>
@@ -706,6 +786,29 @@
   <!-- <script src="/socket.io/socket.io.js"></script> -->
   <script src="https://cdn.bootcdn.net/ajax/libs/socket.io/3.0.0-rc4/socket.io.min.js"></script>
   <script src="https://cdn.bootcdn.net/ajax/libs/vivus/0.4.5/vivus.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/headroom/0.12.0/headroom.min.js"></script>
+  <script>
+    // 获取页面元素
+    var myElement = document.querySelector("#navbar-main");
+    // 创建 Headroom 对象，将页面元素传递进去
+    var headroom = new Headroom(myElement, {
+      // 在元素没有固定之前，垂直方向的偏移量（以px为单位）
+      offset: 0,
+      // scroll tolerance in px before state changes
+      tolerance: 0,
+      // 对于每个状态都可以自定义css classes 
+      classes: {
+        // 当元素初始化后所设置的class
+        initial: "headroom",
+        // 向上滚动时设置的class
+        pinned: "headroom--pinned",
+        // 向下滚动时所设置的class
+        unpinned: "headroom--unpinned"
+      }
+    });
+    // 初始化
+    headroom.init();
+  </script>
   <script>
     var init_msg =
       "🍒 => 买  Buy " +
@@ -745,22 +848,22 @@
     });
     $(document).ready(function () {
 
-          // preloader
-          var $preloader = $('.preloader');
-          if ($preloader.length) {
+      // preloader
+      var $preloader = $('.preloader');
+      if ($preloader.length) {
 
-            const animations = ['oneByOne', 'delayed', 'sync', 'scenario'];
+        const animations = ['oneByOne', 'delayed', 'sync', 'scenario'];
 
-            new Vivus('loader-logo', {
-              duration: 80,
-              type: 'oneByOne'
-            }, function () {
+        new Vivus('loader-logo', {
+          duration: 80,
+          type: 'oneByOne'
+        }, function () {
 
-            });
+        });
 
-            // $preloader.delay(1500).fadeOut(400);
-            $preloader.delay(1500).slideUp();
-          }
+        // $preloader.delay(1500).fadeOut(400);
+        $preloader.delay(1500).slideUp();
+      }
     });
   </script>
 </body>
